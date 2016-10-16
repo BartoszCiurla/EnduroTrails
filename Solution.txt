@@ -1,0 +1,15 @@
+http://endurotrails.pl/sciezki-bielsko/
+http://andrew.hedges.name/experiments/haversine/
+
+<trkpt lon="19.045251" lat="49.767436">
+    <ele>671.700000</ele>
+    <time>2015-07-30T12:59:38Z</time>
+</trkpt>
+
+Latitude, Longitude and Elevation and Time
+
+WayPoint
+
+Track
+
+Route
