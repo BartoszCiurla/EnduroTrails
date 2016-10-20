@@ -20,7 +20,8 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             _fileReader = FileReaderContener.GetFileReader();
             IDistanceLocationsAnalizer distanceLocationsAnalizer = new DistanceLocationsAnalizer();
-            _decscentAnalizer = new DescentDistanceAnalizer(distanceLocationsAnalizer);
+            IDescentAnalizer descentAnalizer = new DescentAnalizer();
+            _decscentAnalizer = new DescentDistanceAnalizer(distanceLocationsAnalizer,descentAnalizer);
         }
 
         [Fact]

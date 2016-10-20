@@ -22,7 +22,8 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             _fileReader = FileReaderContener.GetFileReader();
             IDistanceLocationsAnalizer distanceLocationsAnalizer = new DistanceLocationsAnalizer();
-            _flatAnalizer = new FlatDistanceAnalizer(distanceLocationsAnalizer);
+            IFlatAnalizer flatAnalizer = new FlatAnalizer();
+            _flatAnalizer = new FlatDistanceAnalizer(distanceLocationsAnalizer,flatAnalizer);
         }
 
         [Fact]

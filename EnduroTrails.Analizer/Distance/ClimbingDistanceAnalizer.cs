@@ -7,10 +7,12 @@ namespace EnduroTrails.Analizer.Distance
     public class ClimbingDistanceAnalizer : IDistanceAnalizer
     {
         private readonly IDistanceLocationsAnalizer _distanceLocationsAnalizer;
+        private readonly IClimbingAnalizer _climbingAnalizer;
 
-        public ClimbingDistanceAnalizer(IDistanceLocationsAnalizer distanceLocationsAnalizer)
+        public ClimbingDistanceAnalizer(IDistanceLocationsAnalizer distanceLocationsAnalizer,IClimbingAnalizer climbingAnalizer)
         {
             _distanceLocationsAnalizer = distanceLocationsAnalizer;
+            _climbingAnalizer = climbingAnalizer;
         }
 
         public double AnalizeDistance(WayPoint[] wayPoints)
@@ -18,7 +20,7 @@ namespace EnduroTrails.Analizer.Distance
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
-                if (IsClimbingDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
+                if (_climbingAnalizer.IsClimbingDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
                     result += _distanceLocationsAnalizer.DistanceTo(
                         wayPoints[i].Latitude,
                         wayPoints[i].Longitude,
@@ -27,11 +29,6 @@ namespace EnduroTrails.Analizer.Distance
                         );
             }
             return result;
-        }
-
-        private bool IsClimbingDistance(double elevationFrom, double elevationTo)
-        {
-            return elevationFrom < elevationTo;
-        } 
+        }       
     }
 }

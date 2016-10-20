@@ -46,8 +46,21 @@
     <Compile Include="Distance\FlatDistanceAnalizer.cs" />
     <Compile Include="Distance\TotalDistanceAnalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Time\Abstract\ITimeAnalizer.cs" />
+    <Compile Include="Time\ClimbingTimeAnalizer.cs" />
+    <Compile Include="Time\DescentTimeAnalizer.cs" />
+    <Compile Include="Time\FlatTimeAnalizer.cs" />
+    <Compile Include="Time\TotalTractTimeAnalizer.cs" />
+    <Compile Include="Utility\Abstract\IClimbingAnalizer.cs" />
+    <Compile Include="Utility\Abstract\IDescentAnalizer.cs" />
+    <Compile Include="Utility\Abstract\IFlatAnalizer.cs" />
+    <Compile Include="Utility\Abstract\ITimeLocationsAnalizer.cs" />
+    <Compile Include="Utility\ClimbingAnalizer.cs" />
+    <Compile Include="Utility\DescentAnalizer.cs" />
     <Compile Include="Utility\DistanceLocationsAnalizer.cs" />
     <Compile Include="Utility\Abstract\IDistanceLocationsAnalizer.cs" />
+    <Compile Include="Utility\FlatAnalizer.cs" />
+    <Compile Include="Utility\TimeLocationsAnalizer.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\EnduroTrails.FileReader\EnduroTrails.FileReader.csproj">

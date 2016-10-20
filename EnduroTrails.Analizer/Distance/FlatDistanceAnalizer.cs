@@ -1,5 +1,4 @@
-﻿using System;
-using EnduroTrails.Analizer.Distance.Abstract;
+﻿using EnduroTrails.Analizer.Distance.Abstract;
 using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.Model;
 
@@ -8,11 +7,13 @@ namespace EnduroTrails.Analizer.Distance
     public class FlatDistanceAnalizer:IDistanceAnalizer
     {
         private readonly IDistanceLocationsAnalizer _distanceLocationsAnalizer;
-        private const double FlatTolerance = 0.0;//todo at this moment i don't know what should be here 
+        private readonly IFlatAnalizer _flatAnalizer;
 
-        public FlatDistanceAnalizer(IDistanceLocationsAnalizer distanceLocationsAnalizer)
+
+        public FlatDistanceAnalizer(IDistanceLocationsAnalizer distanceLocationsAnalizer,IFlatAnalizer flatAnalizer)
         {
             _distanceLocationsAnalizer = distanceLocationsAnalizer;
+            _flatAnalizer = flatAnalizer;
         }
 
         public double AnalizeDistance(WayPoint[] wayPoints)
@@ -20,7 +21,7 @@ namespace EnduroTrails.Analizer.Distance
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
-                if (IsFlatDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
+                if (_flatAnalizer.IsFlatDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
                     result += _distanceLocationsAnalizer.DistanceTo(
                         wayPoints[i].Latitude,
                         wayPoints[i].Longitude,
@@ -29,11 +30,6 @@ namespace EnduroTrails.Analizer.Distance
                         );
             }
             return result;
-        }
-
-        private bool IsFlatDistance(double elevationFrom, double elevationTo)
-        {
-            return Math.Abs(elevationFrom - elevationTo) < FlatTolerance;
-        }
+        }       
     }
 }

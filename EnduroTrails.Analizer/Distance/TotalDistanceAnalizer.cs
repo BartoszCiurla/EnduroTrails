@@ -1,5 +1,4 @@
 ﻿using EnduroTrails.Analizer.Distance.Abstract;
-using EnduroTrails.Analizer.Utility;
 using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.Model;
 
