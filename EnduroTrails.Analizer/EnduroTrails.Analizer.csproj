@@ -41,29 +41,25 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Distance\Abstract\IDistanceAnalizer.cs" />
-    <Compile Include="Distance\ClimbingDistanceAnalizer.cs" />
-    <Compile Include="Distance\DescentDistanceAnalizer.cs" />
-    <Compile Include="Distance\FlatDistanceAnalizer.cs" />
-    <Compile Include="Distance\TotalDistanceAnalizer.cs" />
+    <Compile Include="Distance\DistanceAnalizer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Speed\Abstract\ISpeedAnalizer.cs" />
-    <Compile Include="Speed\MaximumSpeedAnalizer.cs" />
-    <Compile Include="Speed\MinimumSpeedAnalizer.cs" />
+    <Compile Include="Speed\AverageSpeedAnalizer.cs" />
+    <Compile Include="Speed\ExtremumSpeedAnalizer.cs" />
     <Compile Include="Time\Abstract\ITimeAnalizer.cs" />
-    <Compile Include="Time\ClimbingTimeAnalizer.cs" />
-    <Compile Include="Time\DescentTimeAnalizer.cs" />
-    <Compile Include="Time\FlatTimeAnalizer.cs" />
-    <Compile Include="Time\TotalTractTimeAnalizer.cs" />
-    <Compile Include="Utility\Abstract\IClimbingAnalizer.cs" />
-    <Compile Include="Utility\Abstract\IDescentAnalizer.cs" />
-    <Compile Include="Utility\Abstract\IFlatAnalizer.cs" />
+    <Compile Include="Time\TimeAnalizer.cs" />
+    <Compile Include="Area\Abstract\IAreaAnalizer.cs" />
+    <Compile Include="Extremum\Abstract\IExtremumSpeedAnalizer.cs" />
     <Compile Include="Utility\Abstract\ISpeedCalculator.cs" />
     <Compile Include="Utility\Abstract\ITimeLocationsAnalizer.cs" />
-    <Compile Include="Utility\ClimbingAnalizer.cs" />
-    <Compile Include="Utility\DescentAnalizer.cs" />
+    <Compile Include="Area\AnyAreaAnalizer.cs" />
+    <Compile Include="Area\ClimbingAnalizer.cs" />
+    <Compile Include="Area\DescentAnalizer.cs" />
     <Compile Include="Utility\DistanceLocationsAnalizer.cs" />
     <Compile Include="Utility\Abstract\IDistanceLocationsAnalizer.cs" />
-    <Compile Include="Utility\FlatAnalizer.cs" />
+    <Compile Include="Area\FlatAnalizer.cs" />
+    <Compile Include="Extremum\MaximumSpeedAnalizer.cs" />
+    <Compile Include="Extremum\MinimumSpeedAnalizer.cs" />
     <Compile Include="Utility\SpeedCalculator.cs" />
     <Compile Include="Utility\TimeLocationsAnalizer.cs" />
   </ItemGroup>

@@ -1,35 +1,36 @@
-﻿using System;
+﻿using EnduroTrails.Analizer.Extremum.Abstract;
 using EnduroTrails.Analizer.Speed.Abstract;
 using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.Model;
 
 namespace EnduroTrails.Analizer.Speed
 {
-    public class MinimumSpeedAnalizer : ISpeedAnalizer
+    public class ExtremumSpeedAnalizer:ISpeedAnalizer
     {
         private readonly ITimeLocationsAnalizer _timeLocationsAnalizer;
         private readonly IDistanceLocationsAnalizer _distanceLocationsAnalizer;
         private readonly ISpeedCalculator _speedCalculator;
+        private readonly IExtremumSpeedAnalizer _extremumSpeedAnalizer;
 
-        public MinimumSpeedAnalizer(
-            ITimeLocationsAnalizer timeLocationsAnalizer, 
-            IDistanceLocationsAnalizer distanceLocationsAnalizer, 
-            ISpeedCalculator speedCalculator)
+        public ExtremumSpeedAnalizer(
+            ITimeLocationsAnalizer timeLocationsAnalizer,
+            IDistanceLocationsAnalizer distanceLocationsAnalizer,
+            ISpeedCalculator speedCalculator,
+            IExtremumSpeedAnalizer extremumSpeedAnalizer)
         {
             _timeLocationsAnalizer = timeLocationsAnalizer;
             _distanceLocationsAnalizer = distanceLocationsAnalizer;
             _speedCalculator = speedCalculator;
+            _extremumSpeedAnalizer = extremumSpeedAnalizer;
         }
-
         public double AnalizeSpeedInKilometerPerHour(WayPoint[] wayPoints)
         {
-            double minimumSpeed = Double.MaxValue;
+            double extremumSpeed = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
-                minimumSpeed = GetLowerSpeed(
-                    minimumSpeed, 
-                    _speedCalculator
-                    .CalculateInKilometerPerHour(
+                extremumSpeed = _extremumSpeedAnalizer.GetExtremumSpeed(
+                    extremumSpeed,
+                    _speedCalculator.CalculateInKilometerPerHour(
                     _distanceLocationsAnalizer.GetDistanceInMiles(
                         wayPoints[i].Latitude,
                         wayPoints[i].Longitude,
@@ -38,10 +39,7 @@ namespace EnduroTrails.Analizer.Speed
                     _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time)
                     ));
             }
-            return minimumSpeed;
+            return extremumSpeed;
         }
-
-        private double GetLowerSpeed(double minimumSpeed, double currentSpeed)
-            => minimumSpeed > currentSpeed ? currentSpeed : minimumSpeed;
     }
 }

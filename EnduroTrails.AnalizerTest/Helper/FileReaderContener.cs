@@ -1,19 +1,22 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using EnduroTrails.FileReader;
+using EnduroTrails.Model;
 
 namespace EnduroTrails.AnalizerTest.Helper
 {
-    public class FileReaderContener
+    public static class FileReaderContener
     {
-        public static IFileReader GetFileReader()
+        static string FilePath = "../../../twister.gpx.txt";
+        static string XmlNamespace = "http://www.topografix.com/GPX/1/1";
+        private static readonly WayPoint[] WayPoints;
+
+        static FileReaderContener()
         {
-            string FilePath = "../../../twister.gpx.txt";
-            string XmlNamespace = "http://www.topografix.com/GPX/1/1";
-            return new GpxFileReader(FilePath, XmlNamespace);
+            IFileReader fileReader = new GpxFileReader(FilePath, XmlNamespace);
+            WayPoints = fileReader.ReadWayPoints().ToArray();
         }
+
+        public static WayPoint[] GetWayPoints() => WayPoints;
+
     }
 }

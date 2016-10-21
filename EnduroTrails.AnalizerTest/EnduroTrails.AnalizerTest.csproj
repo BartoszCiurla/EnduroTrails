@@ -56,17 +56,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Distance\ClimbingDistanceAnalizerTest.cs" />
-    <Compile Include="Distance\DescentDistanceAnalizerTest.cs" />
-    <Compile Include="Distance\FlatDistanceAnalizerTest.cs" />
-    <Compile Include="Distance\TotalDistanceAnalizerTest.cs" />
-    <Compile Include="Distance\TwoWayPointDistanceAnalizerTest.cs" />
+    <Compile Include="Distance\DistanceAnalizerTest.cs" />
     <Compile Include="Helper\FileReaderContener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Speed\MaximumSpeedAnalizerTest.cs" />
-    <Compile Include="Speed\MinimumSpeedAnalizerTest.cs" />
-    <Compile Include="Time\ClimbingTimeAnalizerTest.cs" />
-    <Compile Include="Time\TotalTractTimeAnalizerTest.cs" />
+    <Compile Include="Speed\ExtremumSpeedAnalizerTest.cs" />
+    <Compile Include="Time\TimeAnalizerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />

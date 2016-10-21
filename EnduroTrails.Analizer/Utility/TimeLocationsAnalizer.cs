@@ -13,8 +13,10 @@ namespace EnduroTrails.Analizer.Utility
             _timeTolerance = timeTolerance;
         }
 
-        public double GetTimeInSeconds(DateTime timeStart, DateTime timeEnd) => WhichTimeTolerance(Math.Round((timeEnd.Subtract(timeStart)).TotalSeconds, 0));        
+        public double GetTimeInSeconds(DateTime timeStart, DateTime timeEnd) 
+            => WhichTimeTolerance(Math.Round((timeEnd.Subtract(timeStart)).TotalSeconds, 0));        
 
-        private double WhichTimeTolerance(double timeInSeconds) => _timeTolerance > timeInSeconds ? timeInSeconds : _noTolerance;
+        private double WhichTimeTolerance(double timeInSeconds) 
+            => _timeTolerance > timeInSeconds ? timeInSeconds : _noTolerance;
     }
 }
