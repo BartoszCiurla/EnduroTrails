@@ -15,13 +15,13 @@ namespace EnduroTrails.Analizer.Distance
             _climbingAnalizer = climbingAnalizer;
         }
 
-        public double AnalizeDistance(WayPoint[] wayPoints)
+        public double AnalizeDistanceInMiles(WayPoint[] wayPoints)
         {
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
                 if (_climbingAnalizer.IsClimbingDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
-                    result += _distanceLocationsAnalizer.DistanceTo(
+                    result += _distanceLocationsAnalizer.GetDistanceInMiles(
                         wayPoints[i].Latitude,
                         wayPoints[i].Longitude,
                         wayPoints[j].Latitude,

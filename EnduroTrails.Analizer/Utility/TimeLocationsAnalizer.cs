@@ -8,12 +8,12 @@ namespace EnduroTrails.Analizer.Utility
         private readonly double _timeTolerance;
         private readonly double _noTolerance = 0;
 
-        public TimeLocationsAnalizer(double timeTolerance = 15)
+        public TimeLocationsAnalizer(double timeTolerance = 560)
         {
             _timeTolerance = timeTolerance;
         }
 
-        public double TimeTo(DateTime timeStart, DateTime timeEnd) => WhichTimeTolerance(Math.Abs((timeStart - timeEnd).TotalSeconds));        
+        public double GetTimeInSeconds(DateTime timeStart, DateTime timeEnd) => WhichTimeTolerance(Math.Round((timeEnd.Subtract(timeStart)).TotalSeconds, 0));        
 
         private double WhichTimeTolerance(double timeInSeconds) => _timeTolerance > timeInSeconds ? timeInSeconds : _noTolerance;
     }

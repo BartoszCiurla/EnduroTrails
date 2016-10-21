@@ -4,6 +4,6 @@ namespace EnduroTrails.Analizer.Utility.Abstract
 {
     public interface ITimeLocationsAnalizer
     {
-        double TimeTo(DateTime timeStart, DateTime timeEnd);
+        double GetTimeInSeconds(DateTime timeStart, DateTime timeEnd);
     }
 }

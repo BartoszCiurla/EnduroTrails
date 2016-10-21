@@ -4,6 +4,6 @@ namespace EnduroTrails.Analizer.Time.Abstract
 {
     public interface ITimeAnalizer
     {
-        double AnalizeTime(WayPoint[] wayPoints);
+        double AnalizeTimeInSeconds(WayPoint[] wayPoints);
     }
 }

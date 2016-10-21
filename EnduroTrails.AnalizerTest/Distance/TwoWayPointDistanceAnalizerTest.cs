@@ -25,7 +25,7 @@ namespace EnduroTrails.AnalizerTest.Distance
             double shouldBeInM = 0.002;
             double shouldBeInKm = 0.004;
             var wayPoints = _fileReader.ReadWayPoints().Take(2).ToArray();
-            double result = _distanceLocationsAnalizer.DistanceTo(
+            double result = _distanceLocationsAnalizer.GetDistanceInMiles(
                 wayPoints[0].Latitude,
                 wayPoints[0].Longitude,
                 wayPoints[1].Latitude,

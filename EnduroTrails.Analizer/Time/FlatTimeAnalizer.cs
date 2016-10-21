@@ -15,13 +15,13 @@ namespace EnduroTrails.Analizer.Time
             _flatAnalizer = flatAnalizer;
         }
 
-        public double AnalizeTime(WayPoint[] wayPoints)
+        public double AnalizeTimeInSeconds(WayPoint[] wayPoints)
         {
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
                 if (_flatAnalizer.IsFlatDistance(wayPoints[i].Elevation, wayPoints[j].Elevation))
-                    result += _timeLocationsAnalizer.TimeTo(wayPoints[i].Time, wayPoints[j].Time);
+                    result += _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time);
             }
             return result;
         }

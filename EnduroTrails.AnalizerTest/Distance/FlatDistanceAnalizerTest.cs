@@ -31,7 +31,7 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             var wayPoints = _fileReader.ReadWayPoints().ToArray();
             double result = 0;
-            result = _flatAnalizer.AnalizeDistance(wayPoints);
+            result = _flatAnalizer.AnalizeDistanceInMiles(wayPoints);
 
 
             double resultInM = Math.Round(result * 0.8684, 4);

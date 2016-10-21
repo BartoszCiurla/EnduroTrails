@@ -26,7 +26,7 @@ namespace EnduroTrails.AnalizerTest.Time
         public void ClimbingTime()
         {
             double result = 0;
-            result = _climbingAnalizer.AnalizeTime(_fileReader.ReadWayPoints().ToArray());
+            result = _climbingAnalizer.AnalizeTimeInSeconds(_fileReader.ReadWayPoints().ToArray());
 
             double resultInMinutes = (result / 60);
 

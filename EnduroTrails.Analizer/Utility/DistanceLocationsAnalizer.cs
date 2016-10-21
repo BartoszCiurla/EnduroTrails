@@ -5,7 +5,7 @@ namespace EnduroTrails.Analizer.Utility
 {
     public class DistanceLocationsAnalizer:IDistanceLocationsAnalizer
     {
-        public double DistanceTo(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo)
+        public double GetDistanceInMiles(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo)
         {
             var radFrom = Math.PI * latitudeFrom / 180;
             var radTo = Math.PI * latitudeTo / 180;

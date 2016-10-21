@@ -4,6 +4,6 @@ namespace EnduroTrails.Analizer.Distance.Abstract
 {
     public interface IDistanceAnalizer
     {
-        double AnalizeDistance(WayPoint[] wayPoints);
+        double AnalizeDistanceInMiles(WayPoint[] wayPoints);
     }
 }

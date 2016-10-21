@@ -63,15 +63,15 @@
     <Compile Include="Distance\TwoWayPointDistanceAnalizerTest.cs" />
     <Compile Include="Helper\FileReaderContener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Speed\MaximumSpeedAnalizerTest.cs" />
+    <Compile Include="Speed\MinimumSpeedAnalizerTest.cs" />
     <Compile Include="Time\ClimbingTimeAnalizerTest.cs" />
     <Compile Include="Time\TotalTractTimeAnalizerTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Speed\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <ProjectReference Include="..\EnduroTrails.Analizer\EnduroTrails.Analizer.csproj">
       <Project>{2a26a0c7-5a0d-4f52-8ef9-d3c8f282471e}</Project>

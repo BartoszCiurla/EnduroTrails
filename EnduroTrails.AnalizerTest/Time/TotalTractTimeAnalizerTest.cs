@@ -1,10 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using EnduroTrails.Analizer.Distance;
-using EnduroTrails.Analizer.Distance.Abstract;
 using EnduroTrails.Analizer.Time;
 using EnduroTrails.Analizer.Utility;
 using EnduroTrails.Analizer.Utility.Abstract;
@@ -19,24 +15,21 @@ namespace EnduroTrails.AnalizerTest.Time
         private readonly IFileReader _fileReader;
         private readonly ITimeLocationsAnalizer _timeLocationsAnalizer;
         private readonly TotalTractTimeAnalizer _totaltrackTimeAnalizer;
-        private FlatAnalizer _flatAnalizer;
-        private DescentAnalizer _descentAnalizer;
-        private ClimbingAnalizer _climbingAnalizer;
-        private FlatTimeAnalizer _flatTimeAnalizer;
-        private ClimbingTimeAnalizer _climbingTimeAnalizer;
-        private DescentTimeAnalizer _descentTimeAnalizer;
+        private readonly FlatTimeAnalizer _flatTimeAnalizer;
+        private readonly ClimbingTimeAnalizer _climbingTimeAnalizer;
+        private readonly DescentTimeAnalizer _descentTimeAnalizer;
 
         public TotalTractTimeAnalizerTest()
         {
             _fileReader = FileReaderContener.GetFileReader();
             _timeLocationsAnalizer = new TimeLocationsAnalizer();
-            _flatAnalizer = new FlatAnalizer();
-            _descentAnalizer = new DescentAnalizer();
-            _climbingAnalizer = new ClimbingAnalizer();
+            var flatAnalizer = new FlatAnalizer();
+            var descentAnalizer = new DescentAnalizer();
+            var climbingAnalizer = new ClimbingAnalizer();
             _totaltrackTimeAnalizer = new TotalTractTimeAnalizer(_timeLocationsAnalizer);
-            _flatTimeAnalizer = new FlatTimeAnalizer(_timeLocationsAnalizer, _flatAnalizer);
-            _climbingTimeAnalizer = new ClimbingTimeAnalizer(_timeLocationsAnalizer,_climbingAnalizer);
-            _descentTimeAnalizer = new DescentTimeAnalizer(_timeLocationsAnalizer,_descentAnalizer);
+            _flatTimeAnalizer = new FlatTimeAnalizer(_timeLocationsAnalizer, flatAnalizer);
+            _climbingTimeAnalizer = new ClimbingTimeAnalizer(_timeLocationsAnalizer,climbingAnalizer);
+            _descentTimeAnalizer = new DescentTimeAnalizer(_timeLocationsAnalizer,descentAnalizer);
         }
 
         [Fact]
@@ -47,7 +40,7 @@ namespace EnduroTrails.AnalizerTest.Time
             List<double> timesForAllPoints = new List<double>();
             for (int i = 0,j=1; j < wayPoints.Length; i++,j++)
             {
-                double test = _timeLocationsAnalizer.TimeTo(wayPoints[i].Time, wayPoints[j].Time);
+                double test = _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time);
                 timesForAllPoints.Add(test);
                 result += test;
             }
@@ -62,7 +55,7 @@ namespace EnduroTrails.AnalizerTest.Time
         {
             double result = 0;
             var wayPoints = _fileReader.ReadWayPoints().ToArray();
-            result = _totaltrackTimeAnalizer.AnalizeTime(wayPoints);
+            result = _totaltrackTimeAnalizer.AnalizeTimeInSeconds(wayPoints);
 
             double resultInMinutes =Math.Round(result / 60);
             double resultInHours = Math.Round(resultInMinutes/60);
@@ -75,10 +68,10 @@ namespace EnduroTrails.AnalizerTest.Time
         public void TimeFromAllTypesRoutes()
         {
             var wayPoints = _fileReader.ReadWayPoints().ToArray();
-            double totalTime = _totaltrackTimeAnalizer.AnalizeTime(wayPoints);
-            double climbingTime = _climbingTimeAnalizer.AnalizeTime(wayPoints);
-            double descentTime = _descentTimeAnalizer.AnalizeTime(wayPoints);
-            double flatTime = _flatTimeAnalizer.AnalizeTime(wayPoints);
+            double totalTime = _totaltrackTimeAnalizer.AnalizeTimeInSeconds(wayPoints);
+            double climbingTime = _climbingTimeAnalizer.AnalizeTimeInSeconds(wayPoints);
+            double descentTime = _descentTimeAnalizer.AnalizeTimeInSeconds(wayPoints);
+            double flatTime = _flatTimeAnalizer.AnalizeTimeInSeconds(wayPoints);
 
             double climbingAndDescetTime = climbingTime + descentTime;
             

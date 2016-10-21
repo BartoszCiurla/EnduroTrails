@@ -2,6 +2,6 @@
 {
     public interface IDistanceLocationsAnalizer
     {
-        double DistanceTo(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo);
+        double GetDistanceInMiles(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo);
     }
 }

@@ -18,12 +18,12 @@ namespace EnduroTrails.Analizer.Time
             _timeLocationsAnalizer = timeLocationsAnalizer;
         }
 
-        public double AnalizeTime(WayPoint[] wayPoints)
+        public double AnalizeTimeInSeconds(WayPoint[] wayPoints)
         {
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
-                result += _timeLocationsAnalizer.TimeTo(wayPoints[i].Time, wayPoints[j].Time);
+                result += _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time);
             }
             return result;
         }

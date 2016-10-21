@@ -7,7 +7,6 @@ using EnduroTrails.Analizer.Utility;
 using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.AnalizerTest.Helper;
 using EnduroTrails.FileReader;
-using EnduroTrails.Model;
 using Xunit;
 
 namespace EnduroTrails.AnalizerTest.Distance
@@ -17,12 +16,9 @@ namespace EnduroTrails.AnalizerTest.Distance
         private readonly IDistanceAnalizer _totalDistanceAnalizer;
         private readonly IFileReader _fileReader;
         private readonly IDistanceLocationsAnalizer _distanceLocationsAnalizer;
-        private FlatAnalizer _flatAnalizer;
-        private DescentAnalizer _descentAnalizer;
-        private ClimbingAnalizer _climbingAnalizer;
-        private FlatDistanceAnalizer _flatDistanceAnalizer;
-        private DescentDistanceAnalizer _descentDistanceAnalizer;
-        private ClimbingDistanceAnalizer _climbingDistanceAnalizer;
+        private readonly FlatDistanceAnalizer _flatDistanceAnalizer;
+        private readonly DescentDistanceAnalizer _descentDistanceAnalizer;
+        private readonly ClimbingDistanceAnalizer _climbingDistanceAnalizer;
         private const double TotalDistanceInKm = 4.400;
         private const double TotalDistanceInM = 2.2;
 
@@ -31,13 +27,13 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             _fileReader = FileReaderContener.GetFileReader();
             _distanceLocationsAnalizer = new DistanceLocationsAnalizer();            
-            _flatAnalizer = new FlatAnalizer();
-            _descentAnalizer = new DescentAnalizer();
-            _climbingAnalizer = new ClimbingAnalizer();
+            var flatAnalizer = new FlatAnalizer();
+            var descentAnalizer = new DescentAnalizer();
+            var climbingAnalizer = new ClimbingAnalizer();
             _totalDistanceAnalizer = new TotalDistanceAnalizer(_distanceLocationsAnalizer);
-            _flatDistanceAnalizer = new FlatDistanceAnalizer(_distanceLocationsAnalizer, _flatAnalizer);
-            _descentDistanceAnalizer = new DescentDistanceAnalizer(_distanceLocationsAnalizer, _descentAnalizer);
-            _climbingDistanceAnalizer = new ClimbingDistanceAnalizer(_distanceLocationsAnalizer, _climbingAnalizer);
+            _flatDistanceAnalizer = new FlatDistanceAnalizer(_distanceLocationsAnalizer, flatAnalizer);
+            _descentDistanceAnalizer = new DescentDistanceAnalizer(_distanceLocationsAnalizer, descentAnalizer);
+            _climbingDistanceAnalizer = new ClimbingDistanceAnalizer(_distanceLocationsAnalizer, climbingAnalizer);
         }
 
         [Fact]
@@ -48,7 +44,7 @@ namespace EnduroTrails.AnalizerTest.Distance
             List<double> locationsDistanses = new List<double>();
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
-                double distance = Math.Round(_distanceLocationsAnalizer.DistanceTo(
+                double distance = Math.Round(_distanceLocationsAnalizer.GetDistanceInMiles(
                     wayPoints[i].Latitude,
                     wayPoints[i].Longitude,
                     wayPoints[j].Latitude,
@@ -67,7 +63,7 @@ namespace EnduroTrails.AnalizerTest.Distance
         public void TotalDistance()
         {            
             var locations = _fileReader.ReadWayPoints().ToArray();
-            double result = _totalDistanceAnalizer.AnalizeDistance(locations);
+            double result = _totalDistanceAnalizer.AnalizeDistanceInMiles(locations);
 
             double resultInM = Math.Round(result * 0.8684, 4);
             double resultInKm = Math.Round(result * 1.609344, 3);
@@ -82,10 +78,10 @@ namespace EnduroTrails.AnalizerTest.Distance
         public void DistanceFromAllTypesRoutes()
         {
             var wayPoints = _fileReader.ReadWayPoints().ToArray();
-            double totalDistance = _totalDistanceAnalizer.AnalizeDistance(wayPoints);
-            double climbingDistance = _climbingDistanceAnalizer.AnalizeDistance(wayPoints);
-            double descentDistance = _descentDistanceAnalizer.AnalizeDistance(wayPoints);
-            double flatDistance = _flatDistanceAnalizer.AnalizeDistance(wayPoints);
+            double totalDistance = _totalDistanceAnalizer.AnalizeDistanceInMiles(wayPoints);
+            double climbingDistance = _climbingDistanceAnalizer.AnalizeDistanceInMiles(wayPoints);
+            double descentDistance = _descentDistanceAnalizer.AnalizeDistanceInMiles(wayPoints);
+            double flatDistance = _flatDistanceAnalizer.AnalizeDistanceInMiles(wayPoints);
 
             double climbingAndDescentDistance = climbingDistance + descentDistance;
             double allDistances = climbingAndDescentDistance + flatDistance;
