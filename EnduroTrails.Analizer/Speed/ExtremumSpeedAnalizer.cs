@@ -1,4 +1,5 @@
-﻿using EnduroTrails.Analizer.Extremum.Abstract;
+﻿using System;
+using EnduroTrails.Analizer.Extremum.Abstract;
 using EnduroTrails.Analizer.Speed.Abstract;
 using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.Model;
@@ -25,19 +26,23 @@ namespace EnduroTrails.Analizer.Speed
         }
         public double AnalizeSpeedInKilometerPerHour(WayPoint[] wayPoints)
         {
-            double extremumSpeed = 0;
+            double extremumSpeed = _extremumSpeedAnalizer.InitialSpeed;
+
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
+                double distanceInKm = _distanceLocationsAnalizer.GetDistanceInKm(
+                    wayPoints[i].Latitude,
+                    wayPoints[i].Longitude,
+                    wayPoints[j].Latitude,
+                    wayPoints[j].Longitude);
+
+                double timeInSeconds = _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time);
+
                 extremumSpeed = _extremumSpeedAnalizer.GetExtremumSpeed(
                     extremumSpeed,
                     _speedCalculator.CalculateInKilometerPerHour(
-                    _distanceLocationsAnalizer.GetDistanceInMiles(
-                        wayPoints[i].Latitude,
-                        wayPoints[i].Longitude,
-                        wayPoints[j].Latitude,
-                        wayPoints[j].Longitude),
-                    _timeLocationsAnalizer.GetTimeInSeconds(wayPoints[i].Time, wayPoints[j].Time)
-                    ));
+                        distanceInKm,
+                        timeInSeconds));
             }
             return extremumSpeed;
         }

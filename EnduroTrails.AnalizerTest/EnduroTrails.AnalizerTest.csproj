@@ -57,8 +57,10 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Distance\DistanceAnalizerTest.cs" />
+    <Compile Include="Elevation\ElevationAnalizerTest.cs" />
     <Compile Include="Helper\FileReaderContener.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Speed\AverageSpeedAnalizerTest.cs" />
     <Compile Include="Speed\ExtremumSpeedAnalizerTest.cs" />
     <Compile Include="Time\TimeAnalizerTest.cs" />
   </ItemGroup>

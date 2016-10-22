@@ -16,13 +16,13 @@ namespace EnduroTrails.Analizer.Distance
             _areaAnalizer = areaAnalizer;
         }
 
-        public double AnalizeDistanceInMiles(WayPoint[] wayPoints)
+        public double AnalizeDistanceInKm(WayPoint[] wayPoints)
         {
             double result = 0;
             for (int i = 0, j = 1; j < wayPoints.Length; i++, j++)
             {
                 if(_areaAnalizer.IsArea(wayPoints[i].Elevation,wayPoints[j].Elevation))
-                result += _distanceLocationsAnalizer.GetDistanceInMiles(
+                result += _distanceLocationsAnalizer.GetDistanceInKm(
                     wayPoints[i].Latitude,
                     wayPoints[i].Longitude,
                     wayPoints[j].Latitude,

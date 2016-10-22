@@ -2,6 +2,7 @@
 {
     public interface IExtremumSpeedAnalizer
     {
-        double GetExtremumSpeed(double extremumSpeed, double currentSpeed);
+        double InitialSpeed { get; }
+        double GetExtremumSpeed(double extremumSpeed, double currentSpeed);        
     }
 }

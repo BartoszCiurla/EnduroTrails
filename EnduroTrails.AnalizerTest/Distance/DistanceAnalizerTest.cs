@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Globalization;
-using System.Linq;
 using EnduroTrails.Analizer.Area;
 using EnduroTrails.Analizer.Area.Abstract;
 using EnduroTrails.Analizer.Distance;
@@ -37,24 +36,16 @@ namespace EnduroTrails.AnalizerTest.Distance
             _descentAnalizer = new DescentAnalizer();
             _flatAnalizer = new FlatAnalizer();
             _anyAreaAnalizer = new AnyAreaAnalizer();
-        }
-
-        private double ConvertToNaturalMiles(double miles) => Math.Round(miles * 0.8684, 4);
-
-        private double ConvertToKilometers(double miles) => Math.Round(miles * 1.609344, 3);
+        }        
 
         [Fact]
         public void TotalDistance()
         {
             var totalAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _anyAreaAnalizer);
 
-            double result = totalAnalizer.AnalizeDistanceInMiles(_wayPoints);
-
-            double resultInKilometers = ConvertToKilometers(result);
-            double resultInNaturalMiles = ConvertToNaturalMiles(result);
+            double resultInKilometers = totalAnalizer.AnalizeDistanceInKm(_wayPoints);
 
             Assert.InRange(resultInKilometers, 4.000, TotalDistanceInKm);
-            Assert.InRange(resultInNaturalMiles, 2.000, TotalDistanceInM);
 
             _testOutputHelper.WriteLine(resultInKilometers.ToString(CultureInfo.InvariantCulture));
         }
@@ -64,13 +55,9 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             var climbingAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _climbingAnalizer);
 
-            double result = climbingAnalizer.AnalizeDistanceInMiles(_wayPoints);
-
-            double resultInKilometers = ConvertToKilometers(result);
-            double resultInNaturalMiles = ConvertToNaturalMiles(result);
+            double resultInKilometers = climbingAnalizer.AnalizeDistanceInKm(_wayPoints);            
 
             Assert.NotEqual(resultInKilometers, 0);
-            Assert.NotEqual(resultInNaturalMiles, 0);
 
             _testOutputHelper.WriteLine(resultInKilometers.ToString(CultureInfo.InvariantCulture));
         }
@@ -80,13 +67,9 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             var descentAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _descentAnalizer);
 
-            double result = descentAnalizer.AnalizeDistanceInMiles(_wayPoints);
-
-            double resultInKilometers = ConvertToKilometers(result);
-            double resultInNaturalMiles = ConvertToNaturalMiles(result);
+            double resultInKilometers = descentAnalizer.AnalizeDistanceInKm(_wayPoints);
 
             Assert.NotEqual(resultInKilometers, 0);
-            Assert.NotEqual(resultInNaturalMiles, 0);
 
             _testOutputHelper.WriteLine(resultInKilometers.ToString(CultureInfo.InvariantCulture));
         }
@@ -96,13 +79,9 @@ namespace EnduroTrails.AnalizerTest.Distance
         {
             var flatAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _flatAnalizer);
 
-            double result = flatAnalizer.AnalizeDistanceInMiles(_wayPoints);
-
-            double resultInKilometers = ConvertToKilometers(result);
-            double resultInNaturalMiles = ConvertToNaturalMiles(result);
+            double resultInKilometers = flatAnalizer.AnalizeDistanceInKm(_wayPoints);
 
             Assert.NotEqual(resultInKilometers, 0);
-            Assert.NotEqual(resultInNaturalMiles, 0);
 
             _testOutputHelper.WriteLine(resultInKilometers.ToString(CultureInfo.InvariantCulture));
         }
@@ -115,10 +94,10 @@ namespace EnduroTrails.AnalizerTest.Distance
             var descentAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _descentAnalizer);
             var flatAnalizer = new DistanceAnalizer(_distanceLocationsAnalizer, _flatAnalizer);
 
-            double totalDistance = totalAnalizer.AnalizeDistanceInMiles(_wayPoints);
-            double climbingDistance = climbingAnalizer.AnalizeDistanceInMiles(_wayPoints);
-            double descentDistance = descentAnalizer.AnalizeDistanceInMiles(_wayPoints);
-            double flatDistance = flatAnalizer.AnalizeDistanceInMiles(_wayPoints);
+            double totalDistance = totalAnalizer.AnalizeDistanceInKm(_wayPoints);
+            double climbingDistance = climbingAnalizer.AnalizeDistanceInKm(_wayPoints);
+            double descentDistance = descentAnalizer.AnalizeDistanceInKm(_wayPoints);
+            double flatDistance = flatAnalizer.AnalizeDistanceInKm(_wayPoints);
 
             double areaDistance = climbingDistance + descentDistance + flatDistance;
 

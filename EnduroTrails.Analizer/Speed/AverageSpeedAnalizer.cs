@@ -23,6 +23,7 @@ namespace EnduroTrails.Analizer.Speed
             _speedCalculator = speedCalculator;
             _areaAnalizer = areaAnalizer;
         }
+
         public double AnalizeSpeedInKilometerPerHour(WayPoint[] wayPoints)
         {
             double sumSpeed = 0;
@@ -34,7 +35,7 @@ namespace EnduroTrails.Analizer.Speed
 
                 sumSpeed +=
                 _speedCalculator.CalculateInKilometerPerHour(
-                    _distanceLocationsAnalizer.GetDistanceInMiles(
+                    _distanceLocationsAnalizer.GetDistanceInKm(
                         wayPoints[i].Latitude,
                         wayPoints[i].Longitude,
                         wayPoints[j].Latitude,

@@ -5,21 +5,27 @@ namespace EnduroTrails.Analizer.Utility
 {
     public class DistanceLocationsAnalizer:IDistanceLocationsAnalizer
     {
-        public double GetDistanceInMiles(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo)
+        private readonly double _earthRadiusKm;
+
+        public DistanceLocationsAnalizer(double earthRadiusKm = 6371)
         {
-            var radFrom = Math.PI * latitudeFrom / 180;
-            var radTo = Math.PI * latitudeTo / 180;
-            var theta = longitudeFrom - longitudeTo;
-            var thetaRad = Math.PI * theta / 180;
+            _earthRadiusKm = earthRadiusKm;
+        }
 
-            double distance =
-                Math.Sin(radFrom) * Math.Sin(radTo) + Math.Cos(radFrom) *
-                Math.Cos(radTo) * Math.Cos(thetaRad);
-            distance = Math.Acos(distance);
+        public double GetDistanceInKm(double latitudeFrom, double longitudeFrom, double latitudeTo, double longitudeTo)
+        {
+            double dLat = ToRad(latitudeTo - latitudeFrom);
+            double dLon = ToRad(longitudeTo - longitudeFrom);
 
-            distance = distance * 180 / Math.PI;
-            distance = distance * 60 * 1.1515;
+            double a = Math.Pow(Math.Sin(dLat / 2), 2) +
+                       Math.Cos(ToRad(latitudeFrom)) * Math.Cos(ToRad(latitudeTo)) *
+                       Math.Pow(Math.Sin(dLon / 2), 2);
+
+            double c = 2 * Math.Atan2(Math.Sqrt(a), Math.Sqrt(1 - a));
+
+            double distance = _earthRadiusKm * c;
             return distance;
         }
+        private double ToRad(double input) => input * (Math.PI / 180);        
     }
 }

@@ -8,6 +8,7 @@ using EnduroTrails.Analizer.Extremum;
 using EnduroTrails.Analizer.Extremum.Abstract;
 using EnduroTrails.Analizer.Speed;
 using EnduroTrails.Analizer.Utility;
+using EnduroTrails.Analizer.Utility.Abstract;
 using EnduroTrails.AnalizerTest.Helper;
 using EnduroTrails.Model;
 using Xunit;
@@ -18,9 +19,9 @@ namespace EnduroTrails.AnalizerTest.Speed
     public class ExtremumSpeedAnalizerTest
     {
         private readonly ITestOutputHelper _testOutputHelper;
-        private readonly TimeLocationsAnalizer _timeLocationsAnalizer;
-        private readonly DistanceLocationsAnalizer _distanceLocationsAnalizer;
-        private readonly SpeedCalculator _speedCalculator;
+        private readonly ITimeLocationsAnalizer _timeLocationsAnalizer;
+        private readonly IDistanceLocationsAnalizer _distanceLocationsAnalizer;
+        private readonly ISpeedCalculator _speedCalculator;
         private readonly IExtremumSpeedAnalizer _minimumSpeedAnalizer;
         private readonly IExtremumSpeedAnalizer _maximumSpeedAnalizer;
         private readonly WayPoint[] _wayPoints;
@@ -29,9 +30,11 @@ namespace EnduroTrails.AnalizerTest.Speed
         {
             _testOutputHelper = testOutputHelper;
             _wayPoints = FileReaderContener.GetWayPoints().ToArray();
+
             _timeLocationsAnalizer = new TimeLocationsAnalizer();
             _distanceLocationsAnalizer = new DistanceLocationsAnalizer();
             _speedCalculator = new SpeedCalculator();
+
             _minimumSpeedAnalizer = new MinimumSpeedAnalizer();
             _maximumSpeedAnalizer = new MaximumSpeedAnalizer();
         }
@@ -43,7 +46,7 @@ namespace EnduroTrails.AnalizerTest.Speed
 
             double result = mininumSpeedAnalizer.AnalizeSpeedInKilometerPerHour(_wayPoints);
 
-            Assert.InRange(result,0,10);
+            Assert.True(result > 0);//only when i don't tolerance stopped positions
             _testOutputHelper.WriteLine(result.ToString(CultureInfo.InvariantCulture));
         }
 

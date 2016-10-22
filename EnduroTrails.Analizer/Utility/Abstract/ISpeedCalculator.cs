@@ -2,6 +2,6 @@
 {
     public interface ISpeedCalculator
     {
-        double CalculateInKilometerPerHour(double distanceInMiles, double timeInSeconds);
+        double CalculateInKilometerPerHour(double distanceInKm, double timeInSeconds);
     }
 }
