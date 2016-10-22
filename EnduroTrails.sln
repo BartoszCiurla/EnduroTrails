@@ -21,6 +21,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnduroTrails.Analizer", "En
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "EnduroTrails.AnalizerTest", "EnduroTrails.AnalizerTest\EnduroTrails.AnalizerTest.csproj", "{864E7434-DEF7-4B12-9719-7915E111D3CF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "YConsoleApplication", "YConsoleApplication\YConsoleApplication.csproj", "{C0CA40CF-C96D-4B74-AE71-AD80DB1C955A}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -47,6 +49,10 @@ Global
 		{864E7434-DEF7-4B12-9719-7915E111D3CF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{864E7434-DEF7-4B12-9719-7915E111D3CF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{864E7434-DEF7-4B12-9719-7915E111D3CF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C0CA40CF-C96D-4B74-AE71-AD80DB1C955A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0CA40CF-C96D-4B74-AE71-AD80DB1C955A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0CA40CF-C96D-4B74-AE71-AD80DB1C955A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0CA40CF-C96D-4B74-AE71-AD80DB1C955A}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

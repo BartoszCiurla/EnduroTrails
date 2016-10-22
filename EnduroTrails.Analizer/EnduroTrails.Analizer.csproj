@@ -40,13 +40,17 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Analizer.cs" />
     <Compile Include="Distance\Abstract\IDistanceAnalizer.cs" />
     <Compile Include="Distance\DistanceAnalizer.cs" />
     <Compile Include="Elevation\Abstract\IElevationAnalizer.cs" />
     <Compile Include="Elevation\AverageElevationAnalizer.cs" />
     <Compile Include="Elevation\ExtremumElevationAnalizer.cs" />
+    <Compile Include="Elevation\FinalElevationBalanceAnalizer.cs" />
+    <Compile Include="Elevation\TotalElevationAnalizer.cs" />
     <Compile Include="Extremum\Abstract\IExtremumElevationAnalizer.cs" />
     <Compile Include="Extremum\MinimumElevationAnalizer.cs" />
+    <Compile Include="Factory\DistanceAnalizerFactory.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Speed\Abstract\ISpeedAnalizer.cs" />
     <Compile Include="Speed\AverageSpeedAnalizer.cs" />

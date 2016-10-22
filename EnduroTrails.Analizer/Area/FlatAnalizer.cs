@@ -12,6 +12,11 @@ namespace EnduroTrails.Analizer.Area
             _flatTolerance = flatTolerance;
         }
         public bool IsArea(double elevationFrom, double elevationTo) 
-            => Math.Abs(elevationFrom - elevationTo) < _flatTolerance;              
+            => Math.Abs(elevationFrom - elevationTo) < _flatTolerance;
+
+        public double GetTotalElevation(double elevation)
+        {
+            throw new NotImplementedException();
+        }
     }
 }
